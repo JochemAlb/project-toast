@@ -1,16 +1,16 @@
-import React from 'react';
+import React from "react";
 import {
   AlertOctagon,
   AlertTriangle,
   CheckCircle,
   Info,
   X,
-} from 'react-feather';
+} from "react-feather";
 
-import VisuallyHidden from '../VisuallyHidden';
+import VisuallyHidden from "../VisuallyHidden";
 
-import styles from './Toast.module.css';
-import { ToastContext } from '../ToastProvider/ToastProvider';
+import styles from "./Toast.module.css";
+import { ToastContext } from "../ToastProvider/ToastProvider";
 
 const ICONS_BY_VARIANT = {
   notice: Info,
@@ -20,7 +20,7 @@ const ICONS_BY_VARIANT = {
 };
 
 function Toast({ id, variant, children }) {
-  const { toast } = React.useContext(ToastContext);
+  const { dismissToast } = React.useContext(ToastContext);
   const Icon = ICONS_BY_VARIANT[variant];
 
   return (
@@ -34,7 +34,7 @@ function Toast({ id, variant, children }) {
       </p>
       <button
         className={styles.closeButton}
-        onClick={toast.dismissToast(id)}
+        onClick={() => dismissToast(id)}
         aria-label="Dismiss message"
         aria-live="off"
       >
